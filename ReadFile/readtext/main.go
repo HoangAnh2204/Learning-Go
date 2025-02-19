@@ -39,6 +39,9 @@ func worker(fileChan <-chan string, wg *sync.WaitGroup) {
 
 		// Giới hạn in ra tối đa 200 ký tự để tránh quá dài
 		output := string(content)
+		if len(output) > 200 {
+			output = output[:200] + "..." // Cắt bớt và thêm dấu "..."
+		}
 
 		fmt.Printf("File: %s\nContent:\n%s\n\n", filePath, output)
 	}
